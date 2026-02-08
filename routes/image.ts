@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import type { ImageRequest } from '@types/index'
+import type { ImageRequest } from '#types/index'
 import { validateImageRequest, parseQueryParams } from '@utils/validation'
 import { generateImage } from '@services/imageGenerator'
 import { generateCacheKey, getCachedImage, setCachedImage } from '@services/cache'
@@ -28,7 +28,7 @@ imageRoute.get('/', async (c) => {
     const cached = getCachedImage(cacheKey)
 
     if (cached) {
-        return new Response(cached.imageData, {
+        return new Response(new Uint8Array(cached.imageData), {
             status: 200,
             headers: {
                 'Content-Type': 'image/png',
@@ -42,7 +42,7 @@ imageRoute.get('/', async (c) => {
         const imageBuffer = await generateImage(request)
         setCachedImage(cacheKey, imageBuffer)
 
-        return new Response(imageBuffer, {
+        return new Response(new Uint8Array(imageBuffer), {
             status: 200,
             headers: {
                 'Content-Type': 'image/png',

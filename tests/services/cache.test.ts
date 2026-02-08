@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeEach } from 'bun:test'
 import { generateCacheKey, getCachedImage, setCachedImage, getCacheStats } from '@services/cache'
-import type { ImageRequest } from '@types/index'
+import type { ImageRequest } from '#types/index'
 
 const createRequest = (overrides: Partial<ImageRequest> = {}): ImageRequest => ({
     width: 400,

@@ -1,6 +1,6 @@
 import { LRUCache } from 'lru-cache'
 import { createHash } from 'crypto'
-import type { ImageRequest, CachedImage } from '@types/index'
+import type { ImageRequest, CachedImage } from '#types/index'
 
 const CACHE_MAX_SIZE = parseInt(process.env.CACHE_MAX_SIZE ?? '104857600', 10)
 const CACHE_MAX_ITEMS = parseInt(process.env.CACHE_MAX_ITEMS ?? '500', 10)

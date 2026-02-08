@@ -1,6 +1,6 @@
 import satori from 'satori'
 import { Resvg } from '@resvg/resvg-js'
-import type { ImageRequest } from '@types/index'
+import type { ImageRequest } from '#types/index'
 import { ImageTemplate } from '@components/image-template'
 import { loadFont } from '@services/fontLoader'
 import { convertTailwindToCSS, mergeStyles } from '@utils/tailwindConverter'

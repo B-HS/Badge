@@ -1,4 +1,4 @@
-import type { ImageRequest, ValidationError } from '@types/index'
+import type { ImageRequest, ValidationError } from '#types/index'
 
 const SIZE_MIN = 1
 const SIZE_MAX = 4096

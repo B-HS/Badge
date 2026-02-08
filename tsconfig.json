@@ -16,7 +16,7 @@
       "@routes/*": ["routes/*"],
       "@services/*": ["services/*"],
       "@utils/*": ["utils/*"],
-      "@types/*": ["types/*"],
+      "#types/*": ["types/*"],
       "@public/*": ["public/*"]
     }
   },

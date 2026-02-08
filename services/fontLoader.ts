@@ -1,4 +1,4 @@
-import type { FontConfig, FontInfo } from '@types/index'
+import type { FontConfig, FontInfo } from '#types/index'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 
