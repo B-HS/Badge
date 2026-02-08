@@ -6,9 +6,8 @@
     "dev:server": "bun --hot server.ts",
     "build:client": "bun build public/client.tsx --outdir public --minify",
     "build:css": "bunx @tailwindcss/cli -i ./public/styles.css -o ./public/styles.built.css --minify",
-    "build:server": "bun build server.vercel.ts --outdir api --target node --format esm --external @resvg/resvg-js",
     "build": "bun run build:css && bun run build:client",
-    "vercel-build": "bun run build && bun run build:server"
+    "vercel-build": "bun scripts/vercel-build.ts"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
