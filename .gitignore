@@ -29,6 +29,5 @@ lerna-debug.log*
 .vercel
 
 # build output
-api/
 public/client.js
 public/styles.built.css

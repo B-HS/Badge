@@ -1,4 +1,8 @@
 {
   "installCommand": "bun install",
-  "buildCommand": "bun run vercel-build"
+  "buildCommand": "bun run build",
+  "rewrites": [
+    { "source": "/static/:path*", "destination": "/public/:path*" },
+    { "source": "/:path*", "destination": "/api" }
+  ]
 }
