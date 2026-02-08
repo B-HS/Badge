@@ -27,6 +27,7 @@ export const ImageTemplate = ({ request, computedStyles, iconDataUrl }: ImageTem
         fontSize,
         fontWeight: request.fontWeight,
         fontFamily: request.font,
+        lineHeight: 1.2,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
