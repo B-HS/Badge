@@ -1,11 +1,25 @@
 import satori from 'satori'
-import { Resvg } from '@resvg/resvg-js'
+import { initWasm, Resvg } from '@resvg/resvg-wasm'
+import { readFile } from 'fs/promises'
+import { join } from 'path'
 import type { ImageRequest } from '#types/index'
 import { ImageTemplate } from '@components/image-template'
 import { loadFont } from '@services/fontLoader'
 import { convertTailwindToCSS, mergeStyles } from '@utils/tailwindConverter'
 
+let wasmInitialized = false
+
+const initResvg = async () => {
+    if (wasmInitialized) return
+    const wasmPath = join(process.cwd(), 'node_modules/@resvg/resvg-wasm/index_bg.wasm')
+    const wasmBuffer = await readFile(wasmPath)
+    await initWasm(wasmBuffer)
+    wasmInitialized = true
+}
+
 export const generateImage = async (request: ImageRequest): Promise<Buffer> => {
+    await initResvg()
+
     const fontConfig = await loadFont(request.font, request.fontWeight)
 
     const fonts = fontConfig

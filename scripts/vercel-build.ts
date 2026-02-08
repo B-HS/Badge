@@ -38,7 +38,6 @@ const buildServer = async () => {
         outdir: FUNC_DIR,
         target: 'node',
         format: 'esm',
-        external: ['@resvg/resvg-js'],
         naming: '[dir]/index.mjs',
     })
     if (!result.success) {
@@ -73,7 +72,7 @@ const createVercelOutput = async () => {
         await cp(join('./public', file), join(STATIC_DIR, 'static', file))
     }
 
-    await cp('./node_modules/@resvg', join(FUNC_DIR, 'node_modules/@resvg'), { recursive: true })
+    await cp('./node_modules/@resvg/resvg-wasm', join(FUNC_DIR, 'node_modules/@resvg/resvg-wasm'), { recursive: true })
     await cp('./node_modules/@fontsource', join(FUNC_DIR, 'node_modules/@fontsource'), { recursive: true })
 }
 

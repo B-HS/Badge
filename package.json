@@ -13,7 +13,7 @@
     "@fontsource/inter": "^5.2.8",
     "@fontsource/noto-sans-kr": "^5.2.9",
     "@hono/node-server": "^1.19.9",
-    "@resvg/resvg-js": "^2.6.2",
+    "@resvg/resvg-wasm": "^2.6.2",
     "hono": "^4.11.8",
     "lru-cache": "^11.2.5",
     "satori": "^0.19.1",
