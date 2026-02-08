@@ -1,7 +1,6 @@
 {
   "installCommand": "bun install",
-  "buildCommand": "bun run build",
-  "rewrites": [
-    { "source": "/static/:path*", "destination": "/public/:path*" }
-  ]
+  "buildCommand": "bun run vercel-build",
+  "outputDirectory": ".vercel/output",
+  "framework": null
 }

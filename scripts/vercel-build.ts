@@ -34,7 +34,7 @@ const buildCss = async () => {
 const buildServer = async () => {
     console.log('[build] Building server...')
     const result = await Bun.build({
-        entrypoints: ['./server.vercel.ts'],
+        entrypoints: ['./index.ts'],
         outdir: FUNC_DIR,
         target: 'node',
         format: 'esm',
@@ -42,6 +42,7 @@ const buildServer = async () => {
         naming: '[dir]/index.[ext]',
     })
     if (!result.success) {
+        console.error('[build] Server build errors:', result.logs)
         throw new Error('Server build failed')
     }
 }
