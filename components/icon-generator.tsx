@@ -180,6 +180,54 @@ export const IconGenerator = () => (
                         </select>
                     </div>
                     <div>
+                        <label class="block text-sm font-medium text-foreground mb-1.5">Icon</label>
+                        <select
+                            id="icon"
+                            class="w-full h-10 px-3 pr-10 rounded-md border border-input bg-background text-foreground appearance-none bg-no-repeat focus:outline-none focus:ring-2 focus:ring-ring"
+                            style={`background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-position: right 0.75rem center;`}
+                        >
+                            <option value="">None</option>
+                            <option value="ts">TypeScript</option>
+                            <option value="js">JavaScript</option>
+                            <option value="react">React</option>
+                            <option value="vue">Vue</option>
+                            <option value="svelte">Svelte</option>
+                            <option value="next">Next.js</option>
+                            <option value="nuxt">Nuxt</option>
+                            <option value="node">Node.js</option>
+                            <option value="express">Express</option>
+                            <option value="java">Java</option>
+                            <option value="spring">Spring</option>
+                            <option value="docker">Docker</option>
+                            <option value="git">Git</option>
+                            <option value="github">GitHub</option>
+                            <option value="tailwind">Tailwind</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-foreground mb-1.5">Icon URL</label>
+                        <input
+                            type="text"
+                            id="iconUrl"
+                            placeholder="https://example.com/icon.svg"
+                            class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        />
+                        <p class="mt-1 text-xs text-muted-foreground">Custom icon URL (overrides icon selection)</p>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-foreground mb-1.5">Icon Size</label>
+                        <input
+                            type="number"
+                            id="iconSize"
+                            value="0"
+                            min="0"
+                            max="500"
+                            placeholder="Auto"
+                            class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                        />
+                        <p class="mt-1 text-xs text-muted-foreground">0 = auto size based on height</p>
+                    </div>
+                    <div>
                         <label class="block text-sm font-medium text-foreground mb-1.5">Tailwind Classes</label>
                         <input
                             type="text"

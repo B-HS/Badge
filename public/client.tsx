@@ -7,6 +7,9 @@ type ImageConfig = {
     fontWeight: number
     color: string
     backgroundColor: string
+    icon: string
+    iconUrl: string
+    iconSize: number
     tailwind: string
     css: string
 }
@@ -25,9 +28,14 @@ const DEFAULT_CONFIG: ImageConfig = {
     fontWeight: 400,
     color: '#000000',
     backgroundColor: '#ffffff',
+    icon: '',
+    iconUrl: '',
+    iconSize: 0,
     tailwind: '',
     css: '',
 }
+
+const AVAILABLE_ICONS = ['ts', 'js', 'react', 'vue', 'svelte', 'next', 'nuxt', 'node', 'express', 'java', 'spring', 'docker', 'git', 'github', 'linux', 'sass', 'tailwind', 'jenkins']
 
 const debounce = <T extends (...args: Parameters<T>) => void>(fn: T, delay: number) => {
     let timeoutId: ReturnType<typeof setTimeout>
@@ -74,6 +82,9 @@ const buildQueryParams = (config: ImageConfig) => {
     params.set('fontWeight', String(config.fontWeight))
     params.set('color', config.color)
     params.set('backgroundColor', config.backgroundColor)
+    if (config.icon) params.set('icon', config.icon)
+    if (config.iconUrl) params.set('iconUrl', config.iconUrl)
+    if (config.iconSize > 0) params.set('iconSize', String(config.iconSize))
     if (config.tailwind) params.set('tailwind', config.tailwind)
     if (config.css) params.set('css', config.css)
     return params
@@ -182,6 +193,9 @@ const init = () => {
     const googleFontInput = document.getElementById('googleFont') as HTMLInputElement
     const fontMessage = document.getElementById('fontMessage') as HTMLParagraphElement
     const fontWeightSelect = document.getElementById('fontWeight') as HTMLSelectElement
+    const iconSelect = document.getElementById('icon') as HTMLSelectElement
+    const iconUrlInput = document.getElementById('iconUrl') as HTMLInputElement
+    const iconSizeInput = document.getElementById('iconSize') as HTMLInputElement
     const tailwindInput = document.getElementById('tailwind') as HTMLInputElement
     const cssTextarea = document.getElementById('css') as HTMLTextAreaElement
     const cssError = document.getElementById('cssError') as HTMLParagraphElement
@@ -261,6 +275,9 @@ const init = () => {
             font: useGoogleFont && googleFontInput.value ? googleFontInput.value : fontSelect.value,
             fontSize: parseInt(fontSizeInput.value) || 32,
             fontWeight: parseInt(fontWeightSelect.value) || 400,
+            icon: iconUrlInput.value ? '' : iconSelect.value,
+            iconUrl: iconUrlInput.value,
+            iconSize: parseInt(iconSizeInput.value) || 0,
             tailwind: tailwindInput.value,
             css: cssTextarea.value,
         }
@@ -289,6 +306,9 @@ const init = () => {
     tailwindInput.oninput = syncConfig
     cssTextarea.oninput = syncConfig
     fontWeightSelect.onchange = syncConfig
+    iconSelect.onchange = syncConfig
+    iconUrlInput.oninput = syncConfig
+    iconSizeInput.oninput = syncConfig
 
     fontSelect.onchange = () => {
         useGoogleFont = false

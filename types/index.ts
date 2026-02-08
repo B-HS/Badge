@@ -7,6 +7,9 @@ export type ImageRequest = {
     fontWeight: number
     color: string
     backgroundColor: string
+    icon: string
+    iconUrl: string
+    iconSize: number
     tailwind: string
     css: Record<string, string | number>
 }

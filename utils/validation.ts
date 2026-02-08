@@ -108,8 +108,16 @@ export const parseQueryParams = (query: Record<string, string | undefined>): Par
         result.fontWeight = 400
     }
 
-    result.color = query.color ?? '#000000'
-    result.backgroundColor = query.backgroundColor ?? '#ffffff'
+    result.color = query.textColor ?? query.color ?? '#000000'
+    result.backgroundColor = query.bgColor ?? query.backgroundColor ?? '#ffffff'
+    result.icon = query.icon ?? ''
+    result.iconUrl = query.cIcon ?? query.iconUrl ?? ''
+    if (query.iconSize !== undefined) {
+        const parsed = parseInt(query.iconSize, 10)
+        result.iconSize = isNaN(parsed) ? 0 : parsed
+    } else {
+        result.iconSize = 0
+    }
     result.tailwind = query.tailwind ?? ''
 
     if (query.css) {

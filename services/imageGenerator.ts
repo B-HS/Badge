@@ -5,6 +5,7 @@ import { join } from 'path'
 import type { ImageRequest } from '#types/index'
 import { ImageTemplate } from '@components/image-template'
 import { loadFont } from '@services/fontLoader'
+import { loadIcon, loadIconFromUrl } from '@services/iconLoader'
 import { convertTailwindToCSS, mergeStyles } from '@utils/tailwindConverter'
 
 let wasmInitialized = false
@@ -37,7 +38,14 @@ export const generateImage = async (request: ImageRequest): Promise<Buffer> => {
     const tailwindStyles = convertTailwindToCSS(request.tailwind)
     const computedStyles = mergeStyles(tailwindStyles, request.css)
 
-    const svg = await satori(ImageTemplate({ request, computedStyles }), {
+    let iconDataUrl: string | undefined
+    if (request.iconUrl) {
+        iconDataUrl = (await loadIconFromUrl(request.iconUrl)) ?? undefined
+    } else if (request.icon) {
+        iconDataUrl = (await loadIcon(request.icon)) ?? undefined
+    }
+
+    const svg = await satori(ImageTemplate({ request, computedStyles, iconDataUrl }), {
         width: request.width,
         height: request.height,
         fonts,

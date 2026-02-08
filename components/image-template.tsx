@@ -3,15 +3,17 @@ import type { ImageRequest } from '../types'
 type ImageTemplateProps = {
     request: ImageRequest
     computedStyles: Record<string, string | number>
+    iconDataUrl?: string
 }
 
-export const ImageTemplate = ({ request, computedStyles }: ImageTemplateProps) => {
+export const ImageTemplate = ({ request, computedStyles, iconDataUrl }: ImageTemplateProps) => {
     const containerStyle: Record<string, string | number> = {
         width: '100%',
         height: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        gap: '8px',
         backgroundColor: request.backgroundColor,
         ...computedStyles,
     }
@@ -24,8 +26,14 @@ export const ImageTemplate = ({ request, computedStyles }: ImageTemplateProps) =
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
-        maxWidth: '90%',
     }
 
-    return <div style={containerStyle}>{request.text && <span style={textStyle}>{request.text}</span>}</div>
+    const iconSize = request.iconSize > 0 ? request.iconSize : Math.min(request.height * 0.6, request.fontSize * 1.5)
+
+    return (
+        <div style={containerStyle}>
+            {iconDataUrl && <img src={iconDataUrl} width={iconSize} height={iconSize} style={{ objectFit: 'contain' }} />}
+            {request.text && <span style={textStyle}>{request.text}</span>}
+        </div>
+    )
 }

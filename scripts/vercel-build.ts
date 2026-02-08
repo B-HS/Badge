@@ -74,6 +74,7 @@ const createVercelOutput = async () => {
 
     await cp('./node_modules/@resvg/resvg-wasm', join(FUNC_DIR, 'node_modules/@resvg/resvg-wasm'), { recursive: true })
     await cp('./node_modules/@fontsource', join(FUNC_DIR, 'node_modules/@fontsource'), { recursive: true })
+    await cp('./public/icon', join(FUNC_DIR, 'public/icon'), { recursive: true })
 }
 
 const createDirectories = async () => {
