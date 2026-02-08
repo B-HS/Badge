@@ -2,7 +2,8 @@ import type { FontConfig, FontInfo } from '#types/index'
 import { readFile } from 'fs/promises'
 import { join } from 'path'
 
-const FONTSOURCE_DIR = join(process.cwd(), 'node_modules', '@fontsource')
+const basePath = process.env.VERCEL ? '/var/task' : process.cwd()
+const FONTSOURCE_DIR = join(basePath, 'node_modules', '@fontsource')
 
 const LOCAL_FONTS: FontInfo[] = [
     { name: 'Inter', weights: [400, 700] },

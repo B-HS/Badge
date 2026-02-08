@@ -11,7 +11,8 @@ let wasmInitialized = false
 
 const initResvg = async () => {
     if (wasmInitialized) return
-    const wasmPath = join(process.cwd(), 'node_modules/@resvg/resvg-wasm/index_bg.wasm')
+    const basePath = process.env.VERCEL ? '/var/task' : process.cwd()
+    const wasmPath = join(basePath, 'node_modules/@resvg/resvg-wasm/index_bg.wasm')
     const wasmBuffer = await readFile(wasmPath)
     await initWasm(wasmBuffer)
     wasmInitialized = true
