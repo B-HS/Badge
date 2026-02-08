@@ -95,7 +95,7 @@ export const IconGenerator = () => (
                             <input
                                 type="number"
                                 id="width"
-                                value="100"
+                                value="800"
                                 min="1"
                                 max="4096"
                                 class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -106,7 +106,7 @@ export const IconGenerator = () => (
                             <input
                                 type="number"
                                 id="height"
-                                value="100"
+                                value="250"
                                 min="1"
                                 max="4096"
                                 class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
@@ -118,7 +118,7 @@ export const IconGenerator = () => (
                         <input
                             type="text"
                             id="text"
-                            value="Hello"
+                            value="Badge"
                             maxLength={1000}
                             class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
@@ -129,10 +129,12 @@ export const IconGenerator = () => (
                             type="number"
                             id="fontSize"
                             value="32"
-                            min="8"
+                            min="0"
                             max="500"
-                            class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                            placeholder="Auto"
+                            class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
+                        <p class="mt-1 text-xs text-muted-foreground">Empty = auto (50% of height)</p>
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <ColorPicker id="color" label="Color" defaultValue="#000000" />
@@ -219,13 +221,12 @@ export const IconGenerator = () => (
                         <input
                             type="number"
                             id="iconSize"
-                            value="0"
                             min="0"
                             max="500"
                             placeholder="Auto"
                             class="w-full h-10 px-3 rounded-md border border-input bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                         />
-                        <p class="mt-1 text-xs text-muted-foreground">0 = auto size based on height</p>
+                        <p class="mt-1 text-xs text-muted-foreground">0 or empty = fontSize × 1.2</p>
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-foreground mb-1.5">Tailwind Classes</label>
@@ -259,7 +260,7 @@ export const IconGenerator = () => (
                     </div>
                     <img
                         id="preview-image"
-                        src="/api/image?width=100&height=100&text=Hello&font=Inter&fontSize=32&fontWeight=400&color=%23000000&backgroundColor=%23ffffff"
+                        src="/api/image?width=800&height=250&text=Badge&font=Inter&fontSize=32&fontWeight=400&color=%23000000&backgroundColor=%23ffffff"
                         alt="Preview"
                         class="max-w-full max-h-64 object-contain"
                     />

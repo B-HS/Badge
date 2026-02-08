@@ -15,6 +15,7 @@
     "@hono/node-server": "^1.19.9",
     "@resvg/resvg-wasm": "^2.6.2",
     "hono": "^4.11.8",
+    "icojs": "^0.20.1",
     "lru-cache": "^11.2.5",
     "satori": "^0.19.1",
     "tw-to-css": "^0.0.12"

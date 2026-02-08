@@ -7,28 +7,30 @@ type ImageTemplateProps = {
 }
 
 export const ImageTemplate = ({ request, computedStyles, iconDataUrl }: ImageTemplateProps) => {
+    const fontSize = request.fontSize ?? Math.round(request.height * 0.5)
+    const iconSize = request.iconSize || Math.round(fontSize * 1.2)
+    const gap = Math.round(request.height * 0.08)
+
     const containerStyle: Record<string, string | number> = {
         width: '100%',
         height: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '8px',
+        gap: `${gap}px`,
         backgroundColor: request.backgroundColor,
         ...computedStyles,
     }
 
     const textStyle: Record<string, string | number> = {
         color: request.color,
-        fontSize: request.fontSize,
+        fontSize,
         fontWeight: request.fontWeight,
         fontFamily: request.font,
         textOverflow: 'ellipsis',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
     }
-
-    const iconSize = request.iconSize > 0 ? request.iconSize : Math.min(request.height * 0.6, request.fontSize * 1.5)
 
     return (
         <div style={containerStyle}>

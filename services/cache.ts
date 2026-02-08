@@ -21,6 +21,9 @@ export const generateCacheKey = (request: ImageRequest): string => {
         fontWeight: request.fontWeight,
         color: request.color,
         backgroundColor: request.backgroundColor,
+        icon: request.icon,
+        iconUrl: request.iconUrl,
+        iconSize: request.iconSize,
         tailwind: request.tailwind,
         css: JSON.stringify(request.css),
     }

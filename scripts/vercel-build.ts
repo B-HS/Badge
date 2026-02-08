@@ -3,7 +3,7 @@ import { join } from 'path'
 import { spawn } from 'bun'
 
 const OUTPUT_DIR = '.vercel/output'
-const FUNC_DIR = join(OUTPUT_DIR, 'functions/api.func')
+const FUNC_DIR = join(OUTPUT_DIR, 'functions/index.func')
 const STATIC_DIR = join(OUTPUT_DIR, 'static')
 
 const buildClient = async () => {
@@ -54,7 +54,7 @@ const createVercelOutput = async () => {
         routes: [
             { src: '/static/(.*)', dest: '/static/$1' },
             { handle: 'filesystem' },
-            { src: '/(.*)', dest: '/api' },
+            { src: '/(.*)', dest: '/' },
         ],
     }
     await writeFile(join(OUTPUT_DIR, 'config.json'), JSON.stringify(config, null, 2))

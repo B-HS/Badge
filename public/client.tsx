@@ -20,9 +20,9 @@ type ValidationError = {
 }
 
 const DEFAULT_CONFIG: ImageConfig = {
-    width: 100,
-    height: 100,
-    text: 'Hello',
+    width: 800,
+    height: 250,
+    text: 'Badge',
     font: 'Inter',
     fontSize: 32,
     fontWeight: 400,
@@ -78,19 +78,19 @@ const buildQueryParams = (config: ImageConfig) => {
     params.set('height', String(config.height))
     params.set('text', config.text)
     params.set('font', config.font)
-    params.set('fontSize', String(config.fontSize))
+    if (config.fontSize > 0) params.set('fontSize', String(config.fontSize))
     params.set('fontWeight', String(config.fontWeight))
     params.set('color', config.color)
     params.set('backgroundColor', config.backgroundColor)
     if (config.icon) params.set('icon', config.icon)
     if (config.iconUrl) params.set('iconUrl', config.iconUrl)
-    if (config.iconSize > 0) params.set('iconSize', String(config.iconSize))
+    params.set('iconSize', String(config.iconSize))
     if (config.tailwind) params.set('tailwind', config.tailwind)
     if (config.css) params.set('css', config.css)
     return params
 }
 
-const buildApiUrl = (config: ImageConfig) => `/api/image?${buildQueryParams(config).toString()}`
+const buildApiUrl = (config: ImageConfig) => `/api/image?${buildQueryParams(config).toString()}&_t=${Date.now()}`
 
 const buildFullUrl = (config: ImageConfig) => `${window.location.origin}${buildApiUrl(config)}`
 
@@ -248,7 +248,7 @@ const init = () => {
         }
     }
 
-    const updatePreview = () => {
+    const updatePreview = async () => {
         const errors = validate(config)
         showValidationErrors(errors)
         showCssFeedback(config.css !== '' && errors.some((e) => e.field === 'css'))
@@ -256,13 +256,23 @@ const init = () => {
         if (errors.length > 0) return
 
         showLoading()
-        previewImage.src = buildApiUrl(config)
+
+        const url = buildApiUrl(config)
+        try {
+            const response = await fetch(url)
+            if (!response.ok) {
+                showError()
+                return
+            }
+            const blob = await response.blob()
+            previewImage.src = URL.createObjectURL(blob)
+            showImage()
+        } catch {
+            showError()
+        }
     }
 
     const debouncedUpdatePreview = debounce(updatePreview, 300)
-
-    previewImage.onload = showImage
-    previewImage.onerror = showError
 
     retryButton.onclick = updatePreview
 
@@ -273,11 +283,11 @@ const init = () => {
             height: parseInt(heightInput.value) || 100,
             text: textInput.value,
             font: useGoogleFont && googleFontInput.value ? googleFontInput.value : fontSelect.value,
-            fontSize: parseInt(fontSizeInput.value) || 32,
+            fontSize: fontSizeInput.value ? parseInt(fontSizeInput.value) : 0,
             fontWeight: parseInt(fontWeightSelect.value) || 400,
             icon: iconUrlInput.value ? '' : iconSelect.value,
             iconUrl: iconUrlInput.value,
-            iconSize: parseInt(iconSizeInput.value) || 0,
+            iconSize: iconSizeInput.value ? parseInt(iconSizeInput.value) : 0,
             tailwind: tailwindInput.value,
             css: cssTextarea.value,
         }

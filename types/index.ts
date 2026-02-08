@@ -3,7 +3,7 @@ export type ImageRequest = {
     height: number
     text: string
     font: string
-    fontSize: number
+    fontSize?: number
     fontWeight: number
     color: string
     backgroundColor: string

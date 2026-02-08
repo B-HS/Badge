@@ -56,8 +56,8 @@ export const validateImageRequest = (params: Partial<ImageRequest>): ValidationE
     if (params.fontSize !== undefined) {
         if (typeof params.fontSize !== 'number') {
             errors.push({ field: 'fontSize', message: 'Font size must be a number' })
-        } else if (params.fontSize < FONT_SIZE_MIN || params.fontSize > FONT_SIZE_MAX) {
-            errors.push({ field: 'fontSize', message: `Font size must be between ${FONT_SIZE_MIN} and ${FONT_SIZE_MAX}` })
+        } else if (params.fontSize !== 0 && (params.fontSize < FONT_SIZE_MIN || params.fontSize > FONT_SIZE_MAX)) {
+            errors.push({ field: 'fontSize', message: `Font size must be 0 (auto) or between ${FONT_SIZE_MIN} and ${FONT_SIZE_MAX}` })
         }
     }
 
@@ -96,9 +96,7 @@ export const parseQueryParams = (query: Record<string, string | undefined>): Par
 
     if (query.fontSize !== undefined) {
         const parsed = parseInt(query.fontSize, 10)
-        result.fontSize = isNaN(parsed) ? 32 : parsed
-    } else {
-        result.fontSize = 32
+        result.fontSize = isNaN(parsed) ? undefined : parsed
     }
 
     if (query.fontWeight !== undefined) {
