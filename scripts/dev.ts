@@ -36,7 +36,7 @@ const buildCss = () => {
 const startServer = () => {
     console.log('[server] Starting dev server...')
     return spawn({
-        cmd: ['bun', '--hot', 'server.ts'],
+        cmd: ['bun', '--hot', 'dev-server.ts'],
         stdout: 'inherit',
         stderr: 'inherit',
     })

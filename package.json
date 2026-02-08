@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "dev": "bun scripts/dev.ts",
-    "dev:server": "bun --hot server.ts",
+    "dev:server": "bun --hot dev-server.ts",
     "build:client": "bun build public/client.tsx --outdir public --minify",
     "build:css": "bunx @tailwindcss/cli -i ./public/styles.css -o ./public/styles.built.css --minify",
     "build": "bun run build:css && bun run build:client",
