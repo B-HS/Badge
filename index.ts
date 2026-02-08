@@ -1,9 +1,15 @@
 import { Hono } from 'hono'
 import { handle } from '@hono/node-server/vercel'
+import { healthRoute } from './routes/health'
+import { imageRoute } from './routes/image'
+import { fontsRoute } from './routes/fonts'
+import { pageRoute } from './routes/page'
 
 const app = new Hono()
 
-app.get('/', (c) => c.text('Hello World'))
-app.get('/api/health', (c) => c.json({ status: 'ok' }))
+app.route('/api/health', healthRoute)
+app.route('/api/image', imageRoute)
+app.route('/api/fonts', fontsRoute)
+app.route('/', pageRoute)
 
 export default handle(app)
