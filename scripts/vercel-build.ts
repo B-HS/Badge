@@ -39,7 +39,7 @@ const buildServer = async () => {
         target: 'node',
         format: 'esm',
         external: ['@resvg/resvg-js'],
-        naming: '[dir]/index.[ext]',
+        naming: '[dir]/index.mjs',
     })
     if (!result.success) {
         console.error('[build] Server build errors:', result.logs)
@@ -62,7 +62,7 @@ const createVercelOutput = async () => {
 
     const vcConfig = {
         runtime: 'nodejs20.x',
-        handler: 'index.js',
+        handler: 'index.mjs',
         launcherType: 'Nodejs',
     }
     await writeFile(join(FUNC_DIR, '.vc-config.json'), JSON.stringify(vcConfig, null, 2))
