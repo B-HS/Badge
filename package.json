@@ -1,0 +1,35 @@
+{
+  "name": "hono",
+  "type": "module",
+  "scripts": {
+    "dev": "bun scripts/dev.ts",
+    "dev:server": "bun --hot server.ts",
+    "build:client": "bun build public/client.tsx --outdir public --minify",
+    "build:css": "bunx @tailwindcss/cli -i ./public/styles.css -o ./public/styles.built.css --minify",
+    "build:server": "bun build server.vercel.ts --outdir api --target node --format esm --external @resvg/resvg-js",
+    "build": "bun run build:css && bun run build:client",
+    "vercel-build": "bun run build && bun run build:server"
+  },
+  "dependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/noto-sans-kr": "^5.2.9",
+    "@resvg/resvg-js": "^2.6.2",
+    "hono": "^4.11.8",
+    "lru-cache": "^11.2.5",
+    "satori": "^0.19.1",
+    "tw-to-css": "^0.0.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.18",
+    "@types/node": "^20.11.17",
+    "autoprefixer": "^10.4.24",
+    "bun-types": "^1.3.8",
+    "feconfig-bhs": "^1.0.7",
+    "highlight.js": "^11.11.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "tsx": "^4.7.1",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5.8.3"
+  }
+}
