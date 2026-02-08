@@ -1,7 +1,11 @@
 {
   "installCommand": "bun install",
   "buildCommand": "bun run vercel-build",
-  "outputDirectory": ".",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "node_modules/@fontsource/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/static/:path*",
@@ -9,7 +13,7 @@
     },
     {
       "source": "/:path*",
-      "destination": "/api/index.js"
+      "destination": "/api"
     }
   ]
 }
