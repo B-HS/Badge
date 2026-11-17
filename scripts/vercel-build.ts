@@ -60,7 +60,7 @@ const createVercelOutput = async () => {
     await writeFile(join(OUTPUT_DIR, 'config.json'), JSON.stringify(config, null, 2))
 
     const vcConfig = {
-        runtime: 'nodejs20.x',
+        runtime: 'nodejs24.x',
         handler: 'index.mjs',
         launcherType: 'Nodejs',
     }
